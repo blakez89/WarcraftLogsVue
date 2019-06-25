@@ -7,14 +7,14 @@
 
     <div id="statbardiv">
     
-    <StatClassBar />
+    
     </div>
 
     <div id="mainstuff">
       <div id="moremainstuff">
-        <button class= "buttonPanelItem" v-for="(item,key) in myPanelItems" :key="key">{{item}}</button>
-
-
+         
+          <StatClassBar class= "buttonPanelItem" v-for="(item,key) in zones" :key="key"/>  
+      
       </div>
     </div>
   
@@ -27,6 +27,7 @@
 
 import NavBar from "./Bars/NavBar.vue"
 import StatClassBar from "./Bars/StatClassBar.vue"
+import { HelperMixins } from './Mixins/HelperMixins.js';
 
 export default {
   name: "Statistics",
@@ -35,10 +36,11 @@ export default {
     StatClassBar: StatClassBar
 
   },
-  data () {
+  mixins: [HelperMixins],
+    data () {
       return {
-      thename: 'Statistics',
-      myPanelItems: ['Uldir',"Battle of Dazar'alor",'Crucible of Storms','The Eternal Palace'] 
+      thename: 'Statistics',  
+      thedata: [1,2,3,4,5,6,7,8,9,10]
     }
   }
 }
@@ -55,24 +57,29 @@ export default {
   width:20rem;
 }
 
+
+
 #mainstuff {
   
   height: 30rem;
   width: 75rem;
   background-color:lawngreen;
   position:static;
+  color: black;
 }
 
 #moremainstuff {
   
-  height: 2.5rem;
+  height: 20px;
   width: 75rem;
   background-color: red;
+  display: flex;
+
 }
 
 .buttonPanelItem {
-  height: 100%;
-  width: 25%;
+  height: 2.5rem;
+  width: 100px;
 }
 
 

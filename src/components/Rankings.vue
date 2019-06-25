@@ -89,7 +89,7 @@ export default {
 
   created() {
 
-    this.getJsonData(2265, 10, 3);
+    //this.getJsonData(2265, 10, 3);
   },
 
   methods: {
@@ -112,8 +112,9 @@ export default {
     getJsonData: function(fightID, WoWclass, spec) {
       this.loading = true;
       let trueJsonArray = [];
-      let key = "api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b";
-      let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=5&class=${WoWclass}&spec=${spec}&region=US&${key}`;
+    //  let key = "api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b";
+      let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=5&partition=2&class=${WoWclass}&spec=${spec}&region=US&api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b` 
+      //let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}&difficulty=5&partition=1&class=${WoWclass}&spec=${spec}&region=US&${key}`;
       return new Promise((resolve, reject) => {
         let theJsonData = fetch(url)
           .then(data => data.json())

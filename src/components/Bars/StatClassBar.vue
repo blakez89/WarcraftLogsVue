@@ -1,12 +1,21 @@
 <template>
-  <div class="statclassbar">
 
-<nav  class="site-navigation" role="navigation">
+
+  <div class="statclassbar"
+  @mouseover="shouldShow = true"
+          @mouseleave="shouldShow = false">
+
+
   
-  <button class="accordion" @click="toggle">Select Class</button>
+  <button class="accordion" 
    
-   <div v-if="shouldShow">
-      <StatBarElement
+  
+  >Select Class</button>
+   
+   <div v-if="shouldShow" >
+
+     <!-- This needs to recieve props, is passing double props ok?  -->
+  <StatBarElement
   v-for="(item,index) in wowClasses"
   v-bind:arrayEle="item"
   v-bind:arraySubEle="item.specs"
@@ -16,10 +25,13 @@
   >
   </StatBarElement>
   </div>
-
-</nav>
-
   </div>
+
+
+
+
+
+
 </template>
 
 <script>
@@ -37,7 +49,7 @@ export default {
   },
   data (){
     return {
-      shouldShow: true
+      shouldShow: false
     }
   },
   methods: {
@@ -58,34 +70,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
-.navigation {
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-  
-}
-.site-navigation ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-  display: grid;
-  grid-template-columns: 1;
-}
-.site-navigation li {
-  
-  display: block;
-  display: grid;
-  grid-template-columns: 1;
-  position: relative;
-  text-decoration: none;
-  
-}
-.site-navigation li a {
-  
-  text-decoration: none;
-  display: block;
-}
 
 
  
@@ -118,21 +102,32 @@ button.accordion:hover {
 }
 
 .accordion-content {
-  background-color:rgb(18, 7, 48);
+  background-color:rgb(177, 10, 10);
   padding: 5px 2px;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  
   overflow: hidden;
-  
   position: relative;
-  
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1;
+  margin: 0;
  
 }
 
 .accordion-content-item {
- 
+  display: block;
+  display: grid;
+  grid-template-columns: 1;
+  position: relative;
+  text-decoration: none;
+
+}
+
+.accordion-content-item a {
+text-decoration: none;
+  display: block;
 }
 
 .accordion-content-item:hover {
