@@ -2,23 +2,7 @@
   <div id="statistics">
     <NavBar :theStyle="thename"/>
     <h1>Statistics </h1>
-    
-    <div id="mainlayout">
-
-    <div id="statbardiv">
-    
-    
-    </div>
-
-    <div id="mainstuff">
-      <div id="moremainstuff">
-         
-          <StatClassBar class= "buttonPanelItem" v-for="(item,key) in zones" :key="key"/>  
-      
-      </div>
-    </div>
-  
-  </div>
+   
   </div>
 </template>
 
@@ -26,14 +10,14 @@
 
 
 import NavBar from "./Bars/NavBar.vue"
-import StatClassBar from "./Bars/StatClassBar.vue"
+import BarSubElement from "./Bars/MainBar/BarMainElement.vue"
 import { HelperMixins } from './Mixins/HelperMixins.js';
 
 export default {
   name: "Statistics",
   components: {
     NavBar: NavBar,
-    StatClassBar: StatClassBar
+    BarSubElement: BarSubElement
 
   },
   mixins: [HelperMixins],
@@ -77,10 +61,6 @@ export default {
 
 }
 
-.buttonPanelItem {
-  height: 2.5rem;
-  width: 100px;
-}
 
 
 </style>

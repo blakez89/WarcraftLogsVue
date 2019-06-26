@@ -5,15 +5,18 @@
        >
   
     
-    <div id="maindiv">
+     <div id="maindiv">
     <button class="accordion">
-    {{arrayEle.name}}</button>
-    </div>
+    {{arrayEle.name}}
+    
+    </button>
+     </div>
     
 
 
-      <div id ="importantdiv" >
-      <ul class="accordion-content" v-if="hover">       
+      <div >
+        <ul class="accordion-content" v-if="hover">  
+           
         <li
           class="accordion-content-item"
           v-for="(child,index) in arraySubEle"
@@ -32,7 +35,7 @@
 
 <script>
 export default {
-  name: "StatBarElement",
+  name: "BarSubElement",
   props: ["arrayEle", "arraySubEle"],
   data: function() {
     return {
@@ -53,6 +56,9 @@ export default {
 </script>
 
 <style>
+
+ 
+
 
 
 

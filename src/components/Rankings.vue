@@ -42,7 +42,7 @@
     
  <div class = "encounters">
     
-    <FightBar @transmitEncounterUpdate="updateEncounter"/>
+    
     </div>
 
 
@@ -57,7 +57,6 @@
 <script>
 import ClassBar from "./Bars/ClassBar.vue";
 import WoWTable from "./Bars/WoWTable.vue";
-import FightBar from "./Bars/FightBar.vue";
 import GridLoader from "./Pieces/GridLoader.vue"
 import NavBar from "./Bars/NavBar.vue"
 
@@ -66,7 +65,6 @@ export default {
   components: {
     WoWTable: WoWTable,
     ClassBar: ClassBar,
-    FightBar: FightBar,
     GridLoader: GridLoader,
     NavBar: NavBar
     

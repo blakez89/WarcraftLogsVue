@@ -1,29 +1,32 @@
 <template>
 
 
-  <div class="statclassbar"
+  <div id="statclassbar"
   @mouseover="shouldShow = true"
           @mouseleave="shouldShow = false">
 
 
   
-  <button class="accordion" 
-   
+  <button class="accordion"
+   id="mainaccordionbutton"
   
-  >Select Class</button>
+  >{{jsonName}}</button>
    
+   <!-- <div v-if="shouldShow" > -->
    <div v-if="shouldShow" >
 
      <!-- This needs to recieve props, is passing double props ok?  -->
-  <StatBarElement
-  v-for="(item,index) in wowClasses"
+  <BarSubElement
+  v-for="(item,index) in jsonLevelOne"
   v-bind:arrayEle="item"
-  v-bind:arraySubEle="item.specs"
+  v-bind:arraySubEle="testThings(item,jsonLevelTwo)"
   v-bind:key="index"
   @listenToChild="transmitWowClass"
   
   >
-  </StatBarElement>
+  </BarSubElement>
+
+  
   </div>
   </div>
 
@@ -36,20 +39,20 @@
 
 <script>
 
-import StatBarElement from '../Pieces/StatBarElement.vue'
-import {HelperMixins} from '../Mixins/HelperMixins.js'
+import BarSubElement from './BarSubElement'
+
 
 
 export default {
   name: "StatClassBar",
-  mixins: [HelperMixins]  
-  ,
+  props: ["jsonLevelOne", "jsonLevelTwo","jsonName"],
     components: {
-    StatBarElement: StatBarElement
+    BarSubElement: BarSubElement
   },
   data (){
     return {
-      shouldShow: false
+      shouldShow: false,
+      specs: 'specs'
     }
   },
   methods: {
@@ -63,7 +66,12 @@ export default {
         className: payload.x,
         specName: payload.a
       }); 
+    },
+    
+    testThings: function (def,wontwork){
+        return def[wontwork]
     }
+
   }
 };
 </script>
@@ -76,18 +84,119 @@ export default {
 .mydiv {
   display: flex;
   flex-direction: row;
-  height: 20px;
+  height: 35px;
+  width: 100px;
 }
 
+#mainaccordionbutton{
+height: 20px;
 
+}
+button.accordion {
+  font-size:small;
+  color: #f2f2f2;
+  background-color:#333;
+  border: #ddd;
+  outline: none;
+  text-align: left;
+  height: 35px;
+  width: 100px;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+  
+}
+button.accordion:hover {
+  background-color:  rgb(66, 65, 65);
+}
+
+.accordion-content {
+  font-size:small;
+  background-color:#333;
+  padding: 5px; 
+ 
+  overflow: hidden;
+  position: relative;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1;
+  margin: 0;
+  color: #f2f2f2;
+ 
+}
+.accordion-content-item {
+  display: block;
+  display: grid;
+  grid-template-columns: 1;
+  position: relative;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  
+}
+.accordion-content-item a {
+text-decoration: none;
+  display: block;
+  transition: background-color 0.2s linear;
+}
+.accordion-content-item:hover {
+ background-color:  rgb(66, 65, 65);
+ cursor: pointer;
+ 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 button.accordion {
  
   background-color:  #ddd;
   border: #ddd;
   outline: none;
   text-align: left;
-  height: 20px;
+  height: 100%;
   width: 100px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   cursor: pointer;
   transition: background-color 0.2s linear;
   
@@ -98,7 +207,7 @@ button.accordion:hover {
 }
 
 #importantdiv{
-  width:120px
+  width:300px
 }
 
 .accordion-content {
@@ -136,5 +245,5 @@ text-decoration: none;
  
 } 
 
-
+ */
 </style>
